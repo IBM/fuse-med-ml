@@ -30,7 +30,6 @@ class ModelMultiHead(torch.nn.Module):
     """
 
     def __init__(self,
-
                  backbone: torch.nn.Module,
                  heads: Sequence[torch.nn.Module],
                  conv_inputs: Tuple[Tuple[str, int], ...]=None,

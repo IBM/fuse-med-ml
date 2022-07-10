@@ -1,0 +1,33 @@
+paths:
+  model_dir : model_new/BackboneResnet3D
+  inference_dir : model_new/infer_dir
+  eval_dir : model_new/eval_dir
+  cache_dir : examples/UKBB_cache_dir
+  data_misc_dir : data_misc
+  data_split_filename:  cmmd_split.pkl
+  data_dir : ${oc.env:UKBB_DATA_PATH}
+  sample_ids : sample_ids.csv
+run: 
+  running_modes : ['train', 'infer', 'eval']
+train:
+  target : classification
+  reset_cache: False
+  num_workers : 12
+  num_folds : 5
+  train_folds : [0,1,2]
+  validation_folds : [3]
+  batch_size: 2
+  learning_rate : 1e-4
+  weight_decay :  0
+  resume_checkpoint_filename : 
+  trainer:
+    accelerator : gpu
+    devices : 1
+    num_epochs : 100
+    ckpt_path : 
+infer:
+  infer_filename : validation_set_infer.gz
+  checkpoint : best_epoch.ckpt
+  infer_folds : [4]
+  target : classification
+  num_workers : 12
