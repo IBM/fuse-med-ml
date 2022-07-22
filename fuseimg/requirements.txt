@@ -6,3 +6,4 @@ SimpleITK>=1.2.0
 opencv-python<=4.3.0.36 
 pydicom
 medpy
+radiomics
